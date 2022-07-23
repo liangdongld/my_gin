@@ -36,3 +36,7 @@ logger:
     max_backups: 15
     max_age: 15
     compress: false
+wechat:
+  agent_id: xxxxx
+  secret: xxxxx
+  companyId: xxxxx
