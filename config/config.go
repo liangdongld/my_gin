@@ -19,6 +19,7 @@ type Conf struct {
 	Mysql     MysqlConfig  `ini:"mysql" yaml:"mysql"`
 	Redis     RedisConfig  `ini:"redis" yaml:"redis"`
 	Logger    LoggerConfig `ini:"logger" yaml:"logger"`
+	WeChat    WeChatConfig `ini:"wechat" yaml:"wechat"`
 }
 
 var Config = &Conf{
@@ -27,6 +28,7 @@ var Config = &Conf{
 	Mysql:     Mysql,
 	Redis:     Redis,
 	Logger:    Logger,
+	WeChat:    WeChat,
 }
 var once sync.Once
 

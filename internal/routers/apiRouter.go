@@ -3,6 +3,7 @@ package routers
 import (
 	"github.com/gin-gonic/gin"
 	c "github.com/wannanbigpig/gin-layout/internal/controller/v1"
+	w "github.com/wannanbigpig/gin-layout/internal/controller/wechat"
 )
 
 func setApiRoute(r *gin.Engine) {
@@ -11,5 +12,6 @@ func setApiRoute(r *gin.Engine) {
 	{
 		v1.POST("/login", c.Login)
 		v1.GET("/hello-world", c.HelloWorld)
+		v1.GET("/send", w.SendMsg)
 	}
 }
