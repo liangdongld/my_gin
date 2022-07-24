@@ -42,6 +42,8 @@ func SetRouters() *gin.Engine {
 
 	// 设置 API 路由
 	setApiRoute(r)
+	// 设置微信路由
+	setWeChatRouter(r)
 
 	r.NoRoute(func(c *gin.Context) {
 		response2.Resp().SetHttpCode(http.StatusNotFound).FailCode(c, error_code.NotFound)
