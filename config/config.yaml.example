@@ -39,4 +39,4 @@ logger:
 wechat:
   agent_id: xxxxx
   secret: xxxxx
-  companyId: xxxxx
+  company_id: xxxxx

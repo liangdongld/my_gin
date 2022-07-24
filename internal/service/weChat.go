@@ -1,3 +1,11 @@
+/*
+ * @Author: liangdong09
+ * @Date: 2022-07-23 20:26:24
+ * @LastEditTime: 2022-07-24 15:39:15
+ * @LastEditors: liangdong09
+ * @Description:
+ * @FilePath: /my_gin/internal/service/weChat.go
+ */
 package service
 
 import (
@@ -14,10 +22,18 @@ import (
 	"go.uber.org/zap"
 )
 
+/**
+ * @description: 给企微发送消息
+ * @param {string} message 消息内容
+ * @param {string} msgType 消息类型
+ * @return {*}
+ */
 func SendWeChat(message string, msgType string) error {
 	redis_key := "access_token"
+	// 尝试从redis中读取token
 	accessToken := data.GetRedis(redis_key)
 	http := &utils.HttpRequest{}
+	// 若redis中的token已过期，则重新请求api获取token
 	if accessToken == "" {
 		log.Logger.Info("access token is null, will recall")
 		getTokenUrl := fmt.Sprintf("https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=%s&corpsecret=%s",
