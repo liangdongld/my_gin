@@ -1,3 +1,11 @@
+/*
+ * @Author: liangdong09
+ * @Date: 2022-07-24 00:58:34
+ * @LastEditTime: 2022-07-31 11:43:03
+ * @LastEditors: liangdong09
+ * @Description:
+ * @FilePath: /my_gin/internal/routers/weChatRouter.go
+ */
 package routers
 
 import (
@@ -10,5 +18,7 @@ func setWeChatRouter(r *gin.Engine) {
 	v1 := r.Group("wechat")
 	{
 		v1.GET("/send", w.SendMsg)
+		v1.GET("/receive", w.VerifyMsg)
+		v1.POST("/receive", w.ReceiveMsg)
 	}
 }

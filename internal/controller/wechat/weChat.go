@@ -1,3 +1,11 @@
+/*
+ * @Author: liangdong09
+ * @Date: 2022-07-23 20:20:23
+ * @LastEditTime: 2022-07-31 12:10:38
+ * @LastEditors: liangdong09
+ * @Description:
+ * @FilePath: /my_gin/internal/controller/wechat/weChat.go
+ */
 package wechat
 
 import (
@@ -20,4 +28,37 @@ func SendMsg(c *gin.Context) {
 		return
 	}
 	r.Success(c, "success")
+}
+
+func ReceiveMsg(c *gin.Context) {
+	verifyMsgSign, _ := c.GetQuery("msg_signature")
+	verifyTimestamp, _ := c.GetQuery("timestamp")
+	verifyNonce, _ := c.GetQuery("nonce")
+	b, _ := c.GetRawData()
+	msg, err := service.ReceiveMsg(verifyMsgSign, verifyTimestamp, verifyNonce, b)
+	if err != nil {
+		log.Logger.Fatal(err.Error())
+		return
+	}
+	if msg == "" {
+		msg = "NULL"
+	}
+	c.Writer.Write([]byte(msg))
+}
+
+func VerifyMsg(c *gin.Context) {
+	verifyMsgSign, _ := c.GetQuery("msg_signature")
+	verifyTimestamp, _ := c.GetQuery("timestamp")
+	verifyNonce, _ := c.GetQuery("nonce")
+	verifyEchoStr, _ := c.GetQuery("echostr")
+	msg, err := service.VerifyMsg(verifyMsgSign, verifyTimestamp, verifyNonce, verifyEchoStr)
+	if err != nil {
+		log.Logger.Fatal(err.Error())
+		return
+	}
+	if msg == "" {
+		msg = "NULL"
+		r.Fail(c, 200, "解析信息失败")
+	}
+	c.Writer.Write([]byte(msg))
 }

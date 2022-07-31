@@ -1,3 +1,11 @@
+/*
+ * @Author: liangdong09
+ * @Date: 2022-07-19 00:31:13
+ * @LastEditTime: 2022-07-31 02:21:38
+ * @LastEditors: liangdong09
+ * @Description:
+ * @FilePath: /my_gin/internal/model/base.go
+ */
 package model
 
 import (

@@ -1,12 +1,27 @@
+/*
+ * @Author: liangdong09
+ * @Date: 2022-07-19 00:31:13
+ * @LastEditTime: 2022-07-31 12:58:40
+ * @LastEditors: liangdong09
+ * @Description:
+ * @FilePath: /my_gin/internal/middleware/logger.go
+ */
 package middleware
 
 import (
 	"bytes"
+	"encoding/json"
+	"fmt"
+	"time"
+
 	"github.com/gin-gonic/gin"
 	"github.com/wannanbigpig/gin-layout/config"
+	"github.com/wannanbigpig/gin-layout/data"
+	sys_model "github.com/wannanbigpig/gin-layout/internal/model/system"
 	log "github.com/wannanbigpig/gin-layout/internal/pkg/logger"
+	"github.com/wannanbigpig/gin-layout/internal/service"
+	"github.com/wannanbigpig/gin-layout/pkg/utils"
 	"go.uber.org/zap"
-	"time"
 )
 
 type responseWriter struct {
@@ -34,18 +49,47 @@ func CustomLogger() gin.HandlerFunc {
 
 		c.Next()
 
-		cost := time.Since(c.GetTime("requestStartTime"))
+		cost := time.Since(c.GetTime("requestStartTime")).Microseconds()
 		if config.Config.AppEnv != "production" {
+			var msg sys_model.SysAccessHistories
+			msg.IP = c.ClientIP()
+			msg.Cost = float32(cost)
+			msg.Status = c.Writer.Status()
+			msg.Method = c.Request.Method
+			msg.Path = path
+			msg.Query = query
+			msg.Ua = c.Request.UserAgent()
+			msg.Errors = c.Errors.ByType(gin.ErrorTypePrivate).String()
+			msg.Response = blw.body.Bytes()
+			rsp := make(map[string]interface{})
+			err := json.Unmarshal(msg.Response, &rsp)
+			if err != nil {
+				rsp["content"] = utils.ByteSliceToString(msg.Response)
+				bt, _ := json.Marshal(rsp)
+				msg.Response = bt
+			}
+			err = data.MysqlDB.Create(&msg).Error
+			if err != nil {
+				fmt.Println(err.Error())
+				msg.Errors = err.Error()
+			}
+
+			sendWcByte, _ := json.Marshal(msg)
+			sendWcStr := utils.ByteSliceToString(sendWcByte)
+			go func() {
+				service.SendWeChat(sendWcStr, "text")
+			}()
+
 			log.Logger.Info(path,
-				zap.Int("status", c.Writer.Status()),
-				zap.String("method", c.Request.Method),
-				zap.String("path", path),
-				zap.String("query", query),
-				zap.String("ip", c.ClientIP()),
-				zap.String("user-agent", c.Request.UserAgent()),
-				zap.String("errors", c.Errors.ByType(gin.ErrorTypePrivate).String()),
-				zap.String("cost", cost.String()),
-				zap.String("response", blw.body.String()),
+				zap.Int("status", msg.Status),
+				zap.String("method", msg.Method),
+				zap.String("path", msg.Path),
+				zap.String("query", msg.Query),
+				zap.String("ip", msg.IP),
+				zap.String("user-agent", msg.Ua),
+				zap.String("errors", msg.Errors),
+				zap.Float32("cost", msg.Cost),
+				zap.ByteString("response", msg.Response),
 			)
 		}
 	}

@@ -1,7 +1,7 @@
 /*
  * @Author: liangdong09
  * @Date: 2022-07-23 20:26:24
- * @LastEditTime: 2022-07-24 15:39:15
+ * @LastEditTime: 2022-07-31 13:02:02
  * @LastEditors: liangdong09
  * @Description:
  * @FilePath: /my_gin/internal/service/weChat.go
@@ -11,6 +11,7 @@ package service
 import (
 	"bytes"
 	"encoding/json"
+	"encoding/xml"
 	"errors"
 	"fmt"
 
@@ -18,6 +19,7 @@ import (
 	"github.com/wannanbigpig/gin-layout/data"
 	"github.com/wannanbigpig/gin-layout/internal/model"
 	log "github.com/wannanbigpig/gin-layout/internal/pkg/logger"
+	internal_utils "github.com/wannanbigpig/gin-layout/internal/pkg/utils"
 	"github.com/wannanbigpig/gin-layout/pkg/utils"
 	"go.uber.org/zap"
 )
@@ -72,4 +74,37 @@ func SendWeChat(message string, msgType string) error {
 		return errors.New(errmsg)
 	}
 	return nil
+}
+
+// 验证
+func VerifyMsg(verifyMsgSign string, verifyTimestamp string, verifyNonce string, verifyEchoStr string) (string, error) {
+	token := c.Config.WeChat.Token
+	EncodingAESKey := c.Config.WeChat.EncodingAesKey
+	wxcpt := internal_utils.NewWXBizMsgCrypt(token, EncodingAESKey, "", internal_utils.XmlType)
+	echoStr, cryptErr := wxcpt.VerifyURL(verifyMsgSign, verifyTimestamp, verifyNonce, verifyEchoStr)
+	if nil != cryptErr {
+		fmt.Println("verifyUrl fail", cryptErr)
+		return "", errors.New(cryptErr.ErrMsg)
+	}
+	fmt.Println("verifyUrl success echoStr", string(echoStr))
+	return string(echoStr), nil
+}
+
+func ReceiveMsg(reqMsgSign, reqTimestamp, reqNonce string, reqData []byte) (string, error) {
+	token := c.Config.WeChat.Token
+	EncodingAESKey := c.Config.WeChat.EncodingAesKey
+	wxcpt := internal_utils.NewWXBizMsgCrypt(token, EncodingAESKey, "", internal_utils.XmlType)
+	msg, cryptErr := wxcpt.DecryptMsg(reqMsgSign, reqTimestamp, reqNonce, reqData)
+	if nil != cryptErr {
+		fmt.Println("DecryptMsg fail", cryptErr)
+	}
+	var msgContent model.MsgContent
+	err := xml.Unmarshal(msg, &msgContent)
+	if err != nil {
+		return "", errors.New("unmarshal fail")
+	}
+	bt, _ := json.Marshal(msgContent)
+	str := utils.ByteSliceToString(bt)
+	log.Logger.Sugar().Infof("received message: [%s]", str)
+	return "", nil
 }
