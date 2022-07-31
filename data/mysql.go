@@ -1,9 +1,18 @@
+/*
+ * @Author: liangdong09
+ * @Date: 2022-07-19 00:31:13
+ * @LastEditTime: 2022-07-31 15:08:37
+ * @LastEditors: liangdong09
+ * @Description:
+ * @FilePath: /my_gin/data/mysql.go
+ */
 package data
 
 import (
 	"fmt"
-	c "github.com/wannanbigpig/gin-layout/config"
-	log "github.com/wannanbigpig/gin-layout/internal/pkg/logger"
+
+	c "github.com/liangdong/my-gin/config"
+	log "github.com/liangdong/my-gin/internal/pkg/logger"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"

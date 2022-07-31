@@ -1,8 +1,8 @@
 package autoload
 
 import (
-	"github.com/wannanbigpig/gin-layout/pkg/convert"
-	"github.com/wannanbigpig/gin-layout/pkg/utils"
+	"github.com/liangdong/my-gin/pkg/convert"
+	"github.com/liangdong/my-gin/pkg/utils"
 )
 
 type AppConfig struct {

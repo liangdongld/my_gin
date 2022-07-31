@@ -1,7 +1,7 @@
 /*
  * @Author: liangdong09
  * @Date: 2022-07-19 00:31:13
- * @LastEditTime: 2022-07-31 12:58:40
+ * @LastEditTime: 2022-07-31 15:10:17
  * @LastEditors: liangdong09
  * @Description:
  * @FilePath: /my_gin/internal/middleware/logger.go
@@ -15,12 +15,12 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/wannanbigpig/gin-layout/config"
-	"github.com/wannanbigpig/gin-layout/data"
-	sys_model "github.com/wannanbigpig/gin-layout/internal/model/system"
-	log "github.com/wannanbigpig/gin-layout/internal/pkg/logger"
-	"github.com/wannanbigpig/gin-layout/internal/service"
-	"github.com/wannanbigpig/gin-layout/pkg/utils"
+	"github.com/liangdong/my-gin/config"
+	"github.com/liangdong/my-gin/data"
+	sys_model "github.com/liangdong/my-gin/internal/model/system"
+	log "github.com/liangdong/my-gin/internal/pkg/logger"
+	"github.com/liangdong/my-gin/internal/service"
+	"github.com/liangdong/my-gin/pkg/utils"
 	"go.uber.org/zap"
 )
 

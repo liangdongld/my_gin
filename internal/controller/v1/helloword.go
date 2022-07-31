@@ -1,9 +1,18 @@
+/*
+ * @Author: liangdong09
+ * @Date: 2022-07-23 21:03:55
+ * @LastEditTime: 2022-07-31 15:09:07
+ * @LastEditors: liangdong09
+ * @Description:
+ * @FilePath: /my_gin/internal/controller/v1/helloword.go
+ */
 package v1
 
 import (
 	"fmt"
+
 	"github.com/gin-gonic/gin"
-	r "github.com/wannanbigpig/gin-layout/internal/pkg/response"
+	r "github.com/liangdong/my-gin/internal/pkg/response"
 )
 
 // HelloWorld hello world

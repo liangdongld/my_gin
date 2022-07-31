@@ -1,15 +1,16 @@
 package config
 
 import (
-	. "github.com/wannanbigpig/gin-layout/config/autoload"
-	"github.com/wannanbigpig/gin-layout/pkg/utils"
-	"gopkg.in/ini.v1"
-	"gopkg.in/yaml.v3"
 	"io"
 	"io/ioutil"
 	"os"
 	"path/filepath"
 	"sync"
+
+	. "github.com/liangdong/my-gin/config/autoload"
+	"github.com/liangdong/my-gin/pkg/utils"
+	"gopkg.in/ini.v1"
+	"gopkg.in/yaml.v3"
 )
 
 // Conf 配置项主结构体

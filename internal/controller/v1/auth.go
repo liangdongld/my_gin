@@ -2,10 +2,10 @@ package v1
 
 import (
 	"github.com/gin-gonic/gin"
-	r "github.com/wannanbigpig/gin-layout/internal/pkg/response"
-	"github.com/wannanbigpig/gin-layout/internal/service"
-	"github.com/wannanbigpig/gin-layout/internal/validator"
-	"github.com/wannanbigpig/gin-layout/internal/validator/form"
+	r "github.com/liangdong/my-gin/internal/pkg/response"
+	"github.com/liangdong/my-gin/internal/service"
+	"github.com/liangdong/my-gin/internal/validator"
+	"github.com/liangdong/my-gin/internal/validator/form"
 )
 
 // Login 一个跑通全流程的示例，业务代码未补充完整

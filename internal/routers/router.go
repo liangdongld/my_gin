@@ -1,13 +1,22 @@
+/*
+ * @Author: liangdong09
+ * @Date: 2022-07-19 00:31:13
+ * @LastEditTime: 2022-07-31 15:11:38
+ * @LastEditors: liangdong09
+ * @Description:
+ * @FilePath: /my_gin/internal/routers/router.go
+ */
 package routers
 
 import (
-	"github.com/gin-gonic/gin"
-	"github.com/wannanbigpig/gin-layout/config"
-	"github.com/wannanbigpig/gin-layout/internal/middleware"
-	"github.com/wannanbigpig/gin-layout/internal/pkg/error_code"
-	response2 "github.com/wannanbigpig/gin-layout/internal/pkg/response"
 	"io/ioutil"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
+	"github.com/liangdong/my-gin/internal/middleware"
+	"github.com/liangdong/my-gin/internal/pkg/error_code"
+	response2 "github.com/liangdong/my-gin/internal/pkg/response"
+	"github.com/liangdong/my-gin/config"
 )
 
 func SetRouters() *gin.Engine {

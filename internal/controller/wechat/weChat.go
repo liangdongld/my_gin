@@ -1,7 +1,7 @@
 /*
  * @Author: liangdong09
  * @Date: 2022-07-23 20:20:23
- * @LastEditTime: 2022-07-31 13:12:10
+ * @LastEditTime: 2022-07-31 15:09:27
  * @LastEditors: liangdong09
  * @Description:
  * @FilePath: /my_gin/internal/controller/wechat/weChat.go
@@ -10,10 +10,10 @@ package wechat
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/wannanbigpig/gin-layout/internal/pkg/error_code"
-	log "github.com/wannanbigpig/gin-layout/internal/pkg/logger"
-	r "github.com/wannanbigpig/gin-layout/internal/pkg/response"
-	"github.com/wannanbigpig/gin-layout/internal/service"
+	"github.com/liangdong/my-gin/internal/pkg/error_code"
+	log "github.com/liangdong/my-gin/internal/pkg/logger"
+	r "github.com/liangdong/my-gin/internal/pkg/response"
+	"github.com/liangdong/my-gin/internal/service"
 )
 
 func SendMsg(c *gin.Context) {

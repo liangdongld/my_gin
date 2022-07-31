@@ -9,7 +9,7 @@
 package sys_model
 
 import (
-	"github.com/wannanbigpig/gin-layout/internal/model"
+	"github.com/liangdong/my-gin/internal/model"
 	"gorm.io/gorm"
 )
 

@@ -1,13 +1,22 @@
+/*
+ * @Author: liangdong09
+ * @Date: 2022-07-19 00:31:13
+ * @LastEditTime: 2022-07-31 15:07:55
+ * @LastEditors: liangdong09
+ * @Description:
+ * @FilePath: /my_gin/boot/boot.go
+ */
 package boot
 
 import (
 	"flag"
 	"fmt"
-	"github.com/wannanbigpig/gin-layout/config"
-	"github.com/wannanbigpig/gin-layout/data"
-	"github.com/wannanbigpig/gin-layout/internal/pkg/logger"
-	"github.com/wannanbigpig/gin-layout/internal/routers"
-	"github.com/wannanbigpig/gin-layout/internal/validator"
+
+	"github.com/liangdong/my-gin/config"
+	"github.com/liangdong/my-gin/data"
+	"github.com/liangdong/my-gin/internal/pkg/logger"
+	"github.com/liangdong/my-gin/internal/routers"
+	"github.com/liangdong/my-gin/internal/validator"
 )
 
 func init() {

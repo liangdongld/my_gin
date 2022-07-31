@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/wannanbigpig/gin-layout/boot"
+	"github.com/liangdong/my-gin/boot"
 )
 
 func main() {

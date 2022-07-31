@@ -1,15 +1,24 @@
+/*
+ * @Author: liangdong09
+ * @Date: 2022-07-24 00:56:11
+ * @LastEditTime: 2022-07-31 15:11:11
+ * @LastEditors: liangdong09
+ * @Description:
+ * @FilePath: /my_gin/internal/pkg/logger/logger.go
+ */
 package logger
 
 import (
-	rotatelogs "github.com/lestrrat-go/file-rotatelogs"
-	"github.com/natefinch/lumberjack"
-	"github.com/wannanbigpig/gin-layout/config"
-	"go.uber.org/zap"
-	"go.uber.org/zap/zapcore"
 	"io"
 	"path/filepath"
 	"sync"
 	"time"
+
+	rotatelogs "github.com/lestrrat-go/file-rotatelogs"
+	"github.com/liangdong/my-gin/config"
+	"github.com/natefinch/lumberjack"
+	"go.uber.org/zap"
+	"go.uber.org/zap/zapcore"
 )
 
 var Logger *zap.Logger

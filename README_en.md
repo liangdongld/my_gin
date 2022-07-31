@@ -1,9 +1,9 @@
 # gin-layout 
-[![Go](https://github.com/wannanbigpig/gin-layout/actions/workflows/go.yml/badge.svg)](https://github.com/wannanbigpig/gin-layout/actions/workflows/go.yml)
-[![CodeQL](https://github.com/wannanbigpig/gin-layout/actions/workflows/codeql.yml/badge.svg)](https://github.com/wannanbigpig/gin-layout/actions/workflows/codeql.yml)
-[![Sync to Gitee](https://github.com/wannanbigpig/gin-layout/actions/workflows/gitee-sync.yml/badge.svg?branch=master)](https://github.com/wannanbigpig/gin-layout/actions/workflows/gitee-sync.yml)
+[![Go](https://github.com/liangdong/my-ginactions/workflows/go.yml/badge.svg)](https://github.com/liangdong/my-ginactions/workflows/go.yml)
+[![CodeQL](https://github.com/liangdong/my-ginactions/workflows/codeql.yml/badge.svg)](https://github.com/liangdong/my-ginactions/workflows/codeql.yml)
+[![Sync to Gitee](https://github.com/liangdong/my-ginactions/workflows/gitee-sync.yml/badge.svg?branch=master)](https://github.com/liangdong/my-ginactions/workflows/gitee-sync.yml)
 [![Go Report Card](https://goreportcard.com/badge/github.com/wannanbigpig/gin-layout)](https://goreportcard.com/report/github.com/wannanbigpig/gin-layout)
-[![GitHub license](https://img.shields.io/github/license/wannanbigpig/gin-layout)](https://github.com/wannanbigpig/gin-layout/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/wannanbigpig/gin-layout)](https://github.com/liangdong/my-ginblob/master/LICENSE)
 
 Translations: [简体中文](README.md) | [English](README_en.md)
 ### Gin Project Template

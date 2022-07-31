@@ -1,6 +1,14 @@
 /*
  * @Author: liangdong09
  * @Date: 2022-07-23 20:26:24
+ * @LastEditTime: 2022-07-31 15:12:10
+ * @LastEditors: liangdong09
+ * @Description:
+ * @FilePath: /my_gin/internal/service/weChat.go
+ */
+/*
+ * @Author: liangdong09
+ * @Date: 2022-07-23 20:26:24
  * @LastEditTime: 2022-07-31 13:34:43
  * @LastEditors: liangdong09
  * @Description:
@@ -15,12 +23,12 @@ import (
 	"errors"
 	"fmt"
 
-	c "github.com/wannanbigpig/gin-layout/config"
-	"github.com/wannanbigpig/gin-layout/data"
-	"github.com/wannanbigpig/gin-layout/internal/model"
-	log "github.com/wannanbigpig/gin-layout/internal/pkg/logger"
-	internal_utils "github.com/wannanbigpig/gin-layout/internal/pkg/utils"
-	"github.com/wannanbigpig/gin-layout/pkg/utils"
+	c "github.com/liangdong/my-gin/config"
+	"github.com/liangdong/my-gin/data"
+	"github.com/liangdong/my-gin/internal/model"
+	log "github.com/liangdong/my-gin/internal/pkg/logger"
+	internal_utils "github.com/liangdong/my-gin/internal/pkg/utils"
+	"github.com/liangdong/my-gin/pkg/utils"
 	"go.uber.org/zap"
 )
 

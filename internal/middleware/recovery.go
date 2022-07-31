@@ -3,13 +3,14 @@ package middleware
 import (
 	"errors"
 	"fmt"
-	"github.com/gin-gonic/gin"
-	"github.com/wannanbigpig/gin-layout/config"
-	"github.com/wannanbigpig/gin-layout/internal/pkg/error_code"
-	"github.com/wannanbigpig/gin-layout/internal/pkg/logger"
-	response2 "github.com/wannanbigpig/gin-layout/internal/pkg/response"
 	"net/http"
 	"strings"
+
+	"github.com/gin-gonic/gin"
+	"github.com/liangdong/my-gin/internal/pkg/error_code"
+	"github.com/liangdong/my-gin/internal/pkg/logger"
+	response2 "github.com/liangdong/my-gin/internal/pkg/response"
+	"github.com/liangdong/my-gin/config"
 )
 
 // CustomRecovery 自定义错误 (panic) 拦截中间件、对可能发生的错误进行拦截、统一记录

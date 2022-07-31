@@ -1,11 +1,12 @@
 package response
 
 import (
-	"github.com/gin-gonic/gin"
-	"github.com/wannanbigpig/gin-layout/config"
-	"github.com/wannanbigpig/gin-layout/internal/pkg/error_code"
 	"net/http"
 	"time"
+
+	"github.com/gin-gonic/gin"
+	"github.com/liangdong/my-gin/config"
+	"github.com/liangdong/my-gin/internal/pkg/error_code"
 )
 
 func Resp() *Response {

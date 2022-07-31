@@ -2,7 +2,7 @@ package routers
 
 import (
 	"github.com/gin-gonic/gin"
-	c "github.com/wannanbigpig/gin-layout/internal/controller/v1"
+	c "github.com/liangdong/my-gin/internal/controller/v1"
 )
 
 func setApiRoute(r *gin.Engine) {

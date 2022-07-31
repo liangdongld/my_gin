@@ -1,3 +1,11 @@
+/*
+ * @Author: liangdong09
+ * @Date: 2022-07-19 00:31:13
+ * @LastEditTime: 2022-07-31 15:08:54
+ * @LastEditors: liangdong09
+ * @Description:
+ * @FilePath: /my_gin/data/redis.go
+ */
 package data
 
 import (
@@ -5,7 +13,7 @@ import (
 	"time"
 
 	"github.com/go-redis/redis/v8"
-	c "github.com/wannanbigpig/gin-layout/config"
+	c "github.com/liangdong/my-gin/config"
 )
 
 var rdb *redis.Client
