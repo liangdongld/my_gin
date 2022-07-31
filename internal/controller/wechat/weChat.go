@@ -1,7 +1,7 @@
 /*
  * @Author: liangdong09
  * @Date: 2022-07-23 20:20:23
- * @LastEditTime: 2022-07-31 12:10:38
+ * @LastEditTime: 2022-07-31 13:12:10
  * @LastEditors: liangdong09
  * @Description:
  * @FilePath: /my_gin/internal/controller/wechat/weChat.go

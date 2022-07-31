@@ -1,7 +1,7 @@
 /*
  * @Author: liangdong09
  * @Date: 2022-07-23 20:26:24
- * @LastEditTime: 2022-07-31 13:02:02
+ * @LastEditTime: 2022-07-31 13:34:43
  * @LastEditors: liangdong09
  * @Description:
  * @FilePath: /my_gin/internal/service/weChat.go
@@ -106,5 +106,10 @@ func ReceiveMsg(reqMsgSign, reqTimestamp, reqNonce string, reqData []byte) (stri
 	bt, _ := json.Marshal(msgContent)
 	str := utils.ByteSliceToString(bt)
 	log.Logger.Sugar().Infof("received message: [%s]", str)
-	return "", nil
+	// content := msgContent.Content
+	// msgContent.Content = content
+	bt, _ = xml.Marshal(msgContent)
+	str = utils.ByteSliceToString(bt)
+	encryptMsg, _ := wxcpt.EncryptMsg(str, reqTimestamp, reqNonce)
+	return string(encryptMsg), nil
 }

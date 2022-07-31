@@ -1,7 +1,7 @@
 /*
  * @Author: liangdong09
  * @Date: 2022-07-23 20:36:14
- * @LastEditTime: 2022-07-31 11:47:32
+ * @LastEditTime: 2022-07-31 13:32:25
  * @LastEditors: liangdong09
  * @Description:
  * @FilePath: /my_gin/internal/model/send_msg.go
@@ -23,6 +23,8 @@ type MsgContent struct {
 	CreateTime   uint32 `xml:"CreateTime" json:"CreateTime"`
 	MsgType      string `xml:"MsgType" json:"MsgType"`
 	Content      string `xml:"Content" json:"Content"`
+	PicUrl       string `xml:"PicUrl" json:"PicUrl"`
+	MediaId      string `xml:"MediaId" json:"MediaId"`
 	Msgid        string `xml:"MsgId" json:"Msgid"`
 	Agentid      uint32 `xml:"AgentId" json:"Agentid"`
 }
