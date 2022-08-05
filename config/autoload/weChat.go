@@ -1,15 +1,7 @@
 /*
  * @Author: liangdong09
  * @Date: 2022-07-23 20:41:00
- * @LastEditTime: 2022-08-05 20:56:43
- * @LastEditors: liangdong09
- * @Description:
- * @FilePath: /my_gin/config/autoload/weChat.go
- */
-/*
- * @Author: liangdong09
- * @Date: 2022-07-23 20:41:00
- * @LastEditTime: 2022-08-05 20:55:57
+ * @LastEditTime: 2022-08-05 21:05:37
  * @LastEditors: liangdong09
  * @Description:
  * @FilePath: /my_gin/config/autoload/weChat.go
