@@ -1,7 +1,7 @@
 /*
  * @Author: liangdong09
  * @Date: 2022-07-23 20:20:23
- * @LastEditTime: 2022-07-31 15:09:27
+ * @LastEditTime: 2022-07-31 15:32:05
  * @LastEditors: liangdong09
  * @Description:
  * @FilePath: /my_gin/internal/controller/wechat/weChat.go
@@ -30,6 +30,11 @@ func SendMsg(c *gin.Context) {
 	r.Success(c, "success")
 }
 
+/**
+ * @description: 接收
+ * @param {*gin.Context} c
+ * @return {*}
+ */
 func ReceiveMsg(c *gin.Context) {
 	verifyMsgSign, _ := c.GetQuery("msg_signature")
 	verifyTimestamp, _ := c.GetQuery("timestamp")
@@ -46,6 +51,11 @@ func ReceiveMsg(c *gin.Context) {
 	c.Writer.Write([]byte(msg))
 }
 
+/**
+ * @description: 验证
+ * @param {*gin.Context} c
+ * @return {*}
+ */
 func VerifyMsg(c *gin.Context) {
 	verifyMsgSign, _ := c.GetQuery("msg_signature")
 	verifyTimestamp, _ := c.GetQuery("timestamp")

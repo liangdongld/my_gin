@@ -18,15 +18,18 @@ type WcSendMsg struct {
 }
 
 type MsgContent struct {
-	ToUsername   string `xml:"ToUserName" json:"ToUserName"`
-	FromUsername string `xml:"FromUserName" json:"FromUserName"`
-	CreateTime   uint32 `xml:"CreateTime" json:"CreateTime"`
-	MsgType      string `xml:"MsgType" json:"MsgType"`
-	Content      string `xml:"Content" json:"Content"`
-	PicUrl       string `xml:"PicUrl" json:"PicUrl"`
-	MediaId      string `xml:"MediaId" json:"MediaId"`
-	Msgid        string `xml:"MsgId" json:"Msgid"`
-	Agentid      uint32 `xml:"AgentId" json:"Agentid"`
+	ToUsername   string  `xml:"ToUserName" json:"ToUserName"`
+	FromUsername string  `xml:"FromUserName" json:"FromUserName"`
+	CreateTime   uint32  `xml:"CreateTime" json:"CreateTime"`
+	MsgType      string  `xml:"MsgType" json:"MsgType"`
+	Content      string  `xml:"Content" json:"Content"`
+	PicUrl       string  `xml:"PicUrl" json:"PicUrl"`
+	MediaId      string  `xml:"MediaId" json:"MediaId"`
+	Msgid        string  `xml:"MsgId" json:"Msgid"`
+	Agentid      uint32  `xml:"AgentId" json:"Agentid"`
+	Latitude     float32 `xml:"Latitude" json:"Latitude"`
+	Longitude    float32 `xml:"Longitude" json:"Longitude"`
+	Precision    int     `xml:"Precision" json:"Precision"`
 }
 
 func (t *WcSendMsg) SetAgentId(agentId string) {

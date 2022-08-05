@@ -1,15 +1,7 @@
 /*
- * @Author: liangdong09
+ * @Author: liangdong
  * @Date: 2022-07-23 20:26:24
- * @LastEditTime: 2022-07-31 15:12:10
- * @LastEditors: liangdong09
- * @Description:
- * @FilePath: /my_gin/internal/service/weChat.go
- */
-/*
- * @Author: liangdong09
- * @Date: 2022-07-23 20:26:24
- * @LastEditTime: 2022-07-31 13:34:43
+ * @LastEditTime: 2022-08-05 19:25:45
  * @LastEditors: liangdong09
  * @Description:
  * @FilePath: /my_gin/internal/service/weChat.go
@@ -28,6 +20,7 @@ import (
 	"github.com/liangdong/my-gin/internal/model"
 	log "github.com/liangdong/my-gin/internal/pkg/logger"
 	internal_utils "github.com/liangdong/my-gin/internal/pkg/utils"
+	"github.com/liangdong/my-gin/internal/service/receive"
 	"github.com/liangdong/my-gin/pkg/utils"
 	"go.uber.org/zap"
 )
@@ -114,9 +107,11 @@ func ReceiveMsg(reqMsgSign, reqTimestamp, reqNonce string, reqData []byte) (stri
 	bt, _ := json.Marshal(msgContent)
 	str := utils.ByteSliceToString(bt)
 	log.Logger.Sugar().Infof("received message: [%s]", str)
-	// content := msgContent.Content
-	// msgContent.Content = content
-	bt, _ = xml.Marshal(msgContent)
+	m, err := receive.ReceiveMsg(msgContent)
+	if err != nil {
+		return "", err
+	}
+	bt, _ = xml.Marshal(m)
 	str = utils.ByteSliceToString(bt)
 	encryptMsg, _ := wxcpt.EncryptMsg(str, reqTimestamp, reqNonce)
 	return string(encryptMsg), nil

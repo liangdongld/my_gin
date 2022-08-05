@@ -21,6 +21,7 @@ type Conf struct {
 	Redis     RedisConfig  `ini:"redis" yaml:"redis"`
 	Logger    LoggerConfig `ini:"logger" yaml:"logger"`
 	WeChat    WeChatConfig `ini:"wechat" yaml:"wechat"`
+	Amap      AmapConfig   `ini:"amap" yaml:"amap"`
 }
 
 var Config = &Conf{
@@ -30,6 +31,7 @@ var Config = &Conf{
 	Redis:     Redis,
 	Logger:    Logger,
 	WeChat:    WeChat,
+	Amap:      Amap,
 }
 var once sync.Once
 
