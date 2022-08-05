@@ -1,7 +1,7 @@
 /*
  * @Author: liangdong09
  * @Date: 2022-07-23 20:36:14
- * @LastEditTime: 2022-07-31 13:32:25
+ * @LastEditTime: 2022-08-06 01:02:09
  * @LastEditors: liangdong09
  * @Description:
  * @FilePath: /my_gin/internal/model/send_msg.go
@@ -26,6 +26,12 @@ type MsgContent struct {
 	PicUrl       string  `xml:"PicUrl" json:"PicUrl"`
 	MediaId      string  `xml:"MediaId" json:"MediaId"`
 	Msgid        string  `xml:"MsgId" json:"Msgid"`
+	Format       string  `xml:"Format" json:"Format"`
+	ThumbMediaId string  `xml:"ThumbMediaId" json:"ThumbMediaId"`
+	Location_X   string  `xml:"Location_X" json:"Location_X"`
+	Location_Y   string  `xml:"Location_Y" json:"Location_Y"`
+	Scale        string  `xml:"Scale" json:"Scale"`
+	Label        string  `xml:"Label" json:"Label"`
 	Agentid      uint32  `xml:"AgentId" json:"Agentid"`
 	Latitude     float32 `xml:"Latitude" json:"Latitude"`
 	Longitude    float32 `xml:"Longitude" json:"Longitude"`

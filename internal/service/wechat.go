@@ -1,10 +1,10 @@
 /*
  * @Author: liangdong
  * @Date: 2022-07-23 20:26:24
- * @LastEditTime: 2022-08-05 19:25:45
+ * @LastEditTime: 2022-08-06 00:57:05
  * @LastEditors: liangdong09
  * @Description:
- * @FilePath: /my_gin/internal/service/weChat.go
+ * @FilePath: /my_gin/internal/service/wechat.go
  */
 package service
 
@@ -105,7 +105,7 @@ func ReceiveMsg(reqMsgSign, reqTimestamp, reqNonce string, reqData []byte) (stri
 		return "", errors.New("unmarshal fail")
 	}
 	bt, _ := json.Marshal(msgContent)
-	str := utils.ByteSliceToString(bt)
+	str := utils.ByteSliceToString(msg)
 	log.Logger.Sugar().Infof("received message: [%s]", str)
 	m, err := receive.ReceiveMsg(msgContent)
 	if err != nil {
