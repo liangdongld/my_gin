@@ -1,12 +1,14 @@
 /*
  * @Author: liangdong09
  * @Date: 2022-07-23 20:36:14
- * @LastEditTime: 2022-08-06 01:02:09
+ * @LastEditTime: 2022-08-06 23:05:22
  * @LastEditors: liangdong09
  * @Description:
  * @FilePath: /my_gin/internal/model/send_msg.go
  */
 package model
+
+import "gorm.io/gorm"
 
 type WcSendMsg struct {
 	ToUser  string `json:"touser"`
@@ -18,6 +20,7 @@ type WcSendMsg struct {
 }
 
 type MsgContent struct {
+	gorm.Model
 	ToUsername   string  `xml:"ToUserName" json:"ToUserName"`
 	FromUsername string  `xml:"FromUserName" json:"FromUserName"`
 	CreateTime   uint32  `xml:"CreateTime" json:"CreateTime"`
@@ -25,16 +28,16 @@ type MsgContent struct {
 	Content      string  `xml:"Content" json:"Content"`
 	PicUrl       string  `xml:"PicUrl" json:"PicUrl"`
 	MediaId      string  `xml:"MediaId" json:"MediaId"`
-	Msgid        string  `xml:"MsgId" json:"Msgid"`
-	Format       string  `xml:"Format" json:"Format"`
+	MsgId        string  `xml:"MsgId" json:"MsgId"`
+	Format       string  `xml:"Format" json:"Format"` //多媒体数据格式
 	ThumbMediaId string  `xml:"ThumbMediaId" json:"ThumbMediaId"`
 	Location_X   string  `xml:"Location_X" json:"Location_X"`
 	Location_Y   string  `xml:"Location_Y" json:"Location_Y"`
 	Scale        string  `xml:"Scale" json:"Scale"`
 	Label        string  `xml:"Label" json:"Label"`
 	Agentid      uint32  `xml:"AgentId" json:"Agentid"`
-	Latitude     float32 `xml:"Latitude" json:"Latitude"`
-	Longitude    float32 `xml:"Longitude" json:"Longitude"`
+	Latitude     float64 `xml:"Latitude" json:"Latitude"`
+	Longitude    float64 `xml:"Longitude" json:"Longitude"`
 	Precision    int     `xml:"Precision" json:"Precision"`
 }
 
