@@ -1,7 +1,7 @@
 /*
  * @Author: liangdong09
  * @Date: 2022-08-05 19:44:40
- * @LastEditTime: 2022-08-15 00:40:53
+ * @LastEditTime: 2022-08-15 23:05:53
  * @LastEditors: liangdong09
  * @Description:
  * @FilePath: /my_gin/internal/service/receive/receive_location.go
@@ -21,9 +21,11 @@ import (
 	"github.com/liangdong/my-gin/pkg/utils"
 )
 
+var mux sync.RWMutex
+
 type ReceiveLocation struct {
 	Msg model.MsgContent
-	mux sync.RWMutex
+
 	loc map[string]interface{}
 }
 
@@ -47,14 +49,14 @@ type WeatherInfo struct {
 
 func (r *ReceiveLocation) ReplyMsg() (model.MsgContent, error) {
 	// double check的写法
-	r.mux.RLock()
+	mux.RLock()
 	loc := data.GetRedis("location")
-	r.mux.RUnlock()
+	mux.RUnlock()
 	if loc != "" {
 		return r.Msg, nil
 	}
-	r.mux.Lock()
-	defer r.mux.Unlock()
+	mux.Lock()
+	defer mux.Unlock()
 	loc = data.GetRedis("location")
 	if loc != "" {
 		return r.Msg, nil
