@@ -1,7 +1,7 @@
 /*
  * @Author: liangdong
  * @Date: 2022-07-23 20:26:24
- * @LastEditTime: 2022-08-06 00:57:05
+ * @LastEditTime: 2022-08-18 23:52:01
  * @LastEditors: liangdong09
  * @Description:
  * @FilePath: /my_gin/internal/service/wechat.go
@@ -104,14 +104,13 @@ func ReceiveMsg(reqMsgSign, reqTimestamp, reqNonce string, reqData []byte) (stri
 	if err != nil {
 		return "", errors.New("unmarshal fail")
 	}
-	bt, _ := json.Marshal(msgContent)
 	str := utils.ByteSliceToString(msg)
 	log.Logger.Sugar().Infof("received message: [%s]", str)
 	m, err := receive.ReceiveMsg(msgContent)
 	if err != nil {
 		return "", err
 	}
-	bt, _ = xml.Marshal(m)
+	bt, _ := xml.Marshal(m)
 	str = utils.ByteSliceToString(bt)
 	encryptMsg, _ := wxcpt.EncryptMsg(str, reqTimestamp, reqNonce)
 	return string(encryptMsg), nil

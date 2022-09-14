@@ -1,7 +1,7 @@
 /*
  * @Author: liangdong09
  * @Date: 2022-07-23 20:36:14
- * @LastEditTime: 2022-08-06 23:05:22
+ * @LastEditTime: 2022-09-14 15:29:51
  * @LastEditors: liangdong09
  * @Description:
  * @FilePath: /my_gin/internal/model/send_msg.go
