@@ -1,7 +1,7 @@
 /*
  * @Author: liangdong09
  * @Date: 2022-07-19 00:31:13
- * @LastEditTime: 2022-07-31 15:10:17
+ * @LastEditTime: 2022-10-01 00:11:31
  * @LastEditors: liangdong09
  * @Description:
  * @FilePath: /my_gin/internal/middleware/logger.go
@@ -19,7 +19,6 @@ import (
 	"github.com/liangdong/my-gin/data"
 	sys_model "github.com/liangdong/my-gin/internal/model/system"
 	log "github.com/liangdong/my-gin/internal/pkg/logger"
-	"github.com/liangdong/my-gin/internal/service"
 	"github.com/liangdong/my-gin/pkg/utils"
 	"go.uber.org/zap"
 )
@@ -74,11 +73,11 @@ func CustomLogger() gin.HandlerFunc {
 				msg.Errors = err.Error()
 			}
 
-			sendWcByte, _ := json.Marshal(msg)
-			sendWcStr := utils.ByteSliceToString(sendWcByte)
-			go func() {
-				service.SendWeChat(sendWcStr, "text")
-			}()
+			// sendWcByte, _ := json.Marshal(msg)
+			// sendWcStr := utils.ByteSliceToString(sendWcByte)
+			// go func() {
+			// 	service.SendWeChat(sendWcStr, "text")
+			// }()
 
 			log.Logger.Info(path,
 				zap.Int("status", msg.Status),
