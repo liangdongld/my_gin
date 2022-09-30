@@ -1,7 +1,7 @@
 /*
  * @Author: liangdong09
  * @Date: 2022-07-19 00:31:13
- * @LastEditTime: 2022-07-31 15:11:38
+ * @LastEditTime: 2022-09-18 19:57:43
  * @LastEditors: liangdong09
  * @Description:
  * @FilePath: /my_gin/internal/routers/router.go
@@ -13,10 +13,10 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/liangdong/my-gin/config"
 	"github.com/liangdong/my-gin/internal/middleware"
 	"github.com/liangdong/my-gin/internal/pkg/error_code"
 	response2 "github.com/liangdong/my-gin/internal/pkg/response"
-	"github.com/liangdong/my-gin/config"
 )
 
 func SetRouters() *gin.Engine {

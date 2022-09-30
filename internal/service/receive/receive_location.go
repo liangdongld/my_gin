@@ -1,7 +1,7 @@
 /*
  * @Author: liangdong09
  * @Date: 2022-08-05 19:44:40
- * @LastEditTime: 2022-08-15 23:05:53
+ * @LastEditTime: 2022-09-30 23:55:07
  * @LastEditors: liangdong09
  * @Description:
  * @FilePath: /my_gin/internal/service/receive/receive_location.go
@@ -50,14 +50,15 @@ type WeatherInfo struct {
 func (r *ReceiveLocation) ReplyMsg() (model.MsgContent, error) {
 	// double check的写法
 	mux.RLock()
-	loc := data.GetRedis("location")
+	key := "location_" + r.Msg.FromUsername
+	loc := data.GetRedis(key)
 	mux.RUnlock()
 	if loc != "" {
 		return r.Msg, nil
 	}
 	mux.Lock()
 	defer mux.Unlock()
-	loc = data.GetRedis("location")
+	loc = data.GetRedis(key)
 	if loc != "" {
 		return r.Msg, nil
 	}
@@ -75,7 +76,8 @@ func (r *ReceiveLocation) ReplyMsg() (model.MsgContent, error) {
 	}
 
 	r.Msg.MsgType = "text"
-	r.Msg.Content = fmt.Sprintf("当前所在地址为:\n %s\n", addr)
+	r.Msg.Content = fmt.Sprintf("你好 %s\n \n", r.Msg.FromUsername)
+	r.Msg.Content += fmt.Sprintf("当前所在地址为:\n %s\n", addr)
 	r.Msg.Content += "=================\n"
 	r.Msg.Content += wInfo
 
@@ -83,7 +85,7 @@ func (r *ReceiveLocation) ReplyMsg() (model.MsgContent, error) {
 	if err != nil {
 		return r.Msg, err
 	}
-	data.SetRedis("location", utils.ByteSliceToString(addr_byte), 600)
+	data.SetRedis(key, utils.ByteSliceToString(addr_byte), 600)
 	return r.Msg, nil
 }
 
