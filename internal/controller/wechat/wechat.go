@@ -1,10 +1,10 @@
 /*
  * @Author: liangdong09
  * @Date: 2022-07-23 20:20:23
- * @LastEditTime: 2022-07-31 15:32:05
+ * @LastEditTime: 2022-10-04 13:16:52
  * @LastEditors: liangdong09
  * @Description:
- * @FilePath: /my_gin/internal/controller/wechat/weChat.go
+ * @FilePath: /my_gin/internal/controller/wechat/wechat.go
  */
 package wechat
 
@@ -22,7 +22,7 @@ func SendMsg(c *gin.Context) {
 		msg = "please input message"
 	}
 	log.Logger.Info("send wechat message: " + msg)
-	err := service.SendWeChat(msg, "text")
+	err := service.SendWeChat(msg, "text", "log")
 	if err != nil {
 		r.Resp().FailCode(c, error_code.FAILURE, err.Error())
 		return

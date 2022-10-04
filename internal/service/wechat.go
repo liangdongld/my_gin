@@ -1,7 +1,7 @@
 /*
  * @Author: liangdong
  * @Date: 2022-07-23 20:26:24
- * @LastEditTime: 2022-08-18 23:52:01
+ * @LastEditTime: 2022-10-04 13:23:10
  * @LastEditors: liangdong09
  * @Description:
  * @FilePath: /my_gin/internal/service/wechat.go
@@ -25,22 +25,21 @@ import (
 	"go.uber.org/zap"
 )
 
-/**
- * @description: 给企微发送消息
- * @param {string} message 消息内容
- * @param {string} msgType 消息类型
- * @return {*}
- */
-func SendWeChat(message string, msgType string) error {
-	redis_key := "access_token"
+// SendWeChat 主动发送微信消息
+func SendWeChat(message string, msgType string, robotName string) error {
+	redis_key := "access_token" + robotName
 	// 尝试从redis中读取token
 	accessToken := data.GetRedis(redis_key)
 	http := &utils.HttpRequest{}
+	robot, err := internal_utils.FindRobotByName(c.Config.WeChat, robotName)
+	if err != nil {
+		return err
+	}
 	// 若redis中的token已过期，则重新请求api获取token
 	if accessToken == "" {
 		log.Logger.Info("access token is null, will recall")
 		getTokenUrl := fmt.Sprintf("https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=%s&corpsecret=%s",
-			c.Config.WeChat.CompanyId, c.Config.WeChat.Secret)
+			c.Config.WeChat.CompanyId, robot.Secret)
 		log.Logger.Info("token_url", zap.String("url", getTokenUrl))
 		http.Request("GET", getTokenUrl, nil)
 		ret := make(map[string]interface{})
@@ -56,7 +55,7 @@ func SendWeChat(message string, msgType string) error {
 	msg := &model.WcSendMsg{
 		ToUser:  "@all",
 		MsgType: msgType,
-		AgentId: c.Config.WeChat.AgentId,
+		AgentId: robot.AgentId,
 	}
 	msg.SetMessage(message)
 	sendMsgUrl := fmt.Sprintf("https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=%v", accessToken)
@@ -66,7 +65,7 @@ func SendWeChat(message string, msgType string) error {
 	http.Request("POST", sendMsgUrl, bytes.NewReader(bytesData), header)
 	log.Logger.Info("bytes data = " + string(bytesData))
 	ret := make(map[string]interface{})
-	err := http.ParseJson(&ret)
+	err = http.ParseJson(&ret)
 	if err != nil {
 		return err
 	}
