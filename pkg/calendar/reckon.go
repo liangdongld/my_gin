@@ -1,7 +1,7 @@
 /*
  * @Author: liangdong09
  * @Date: 2022-10-04 13:31:35
- * @LastEditTime: 2022-10-04 16:45:11
+ * @LastEditTime: 2022-10-04 22:02:54
  * @LastEditors: liangdong09
  * @Description:
  * @FilePath: /my_gin/pkg/calendar/reckon.go
@@ -14,9 +14,7 @@ import (
 )
 
 var (
-	holidayList = []Holiday{
-		{Name: "颖生日", Year: 2022, Month: time.December, Day: 18},
-		{Name: "栋生日", Year: 2022, Month: time.December, Day: 30},
+	holidayList = []Date{
 		{Name: "元旦", Year: 2023, Month: time.January, Day: 1},
 		{Name: "春节", Year: 2023, Month: time.January, Day: 22},
 		{Name: "清明节", Year: 2023, Month: time.April, Day: 5},
@@ -39,7 +37,7 @@ func sortHoliday() {
 	})
 }
 
-func GetNextHoliday() Holiday {
+func GetNextHoliday() Date {
 	sortHoliday()
 	now := time.Now()
 	year := now.Year()

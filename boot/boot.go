@@ -1,7 +1,7 @@
 /*
  * @Author: liangdong09
  * @Date: 2022-07-19 00:31:13
- * @LastEditTime: 2022-07-31 15:07:55
+ * @LastEditTime: 2022-10-04 21:59:08
  * @LastEditors: liangdong09
  * @Description:
  * @FilePath: /my_gin/boot/boot.go
@@ -16,6 +16,7 @@ import (
 	"github.com/liangdong/my-gin/data"
 	"github.com/liangdong/my-gin/internal/pkg/logger"
 	"github.com/liangdong/my-gin/internal/routers"
+	"github.com/liangdong/my-gin/internal/task"
 	"github.com/liangdong/my-gin/internal/validator"
 )
 
@@ -36,6 +37,10 @@ func init() {
 
 	// 4、初始化验证器
 	validator.InitValidatorTrans("zh")
+
+	// 5、task
+	task.InitTask()
+	// task.SendDayilyMsg()
 }
 
 func Run() {

@@ -1,7 +1,7 @@
 /*
  * @Author: liangdong09
  * @Date: 2022-10-04 13:31:46
- * @LastEditTime: 2022-10-04 16:43:41
+ * @LastEditTime: 2022-10-04 21:32:32
  * @LastEditors: liangdong09
  * @Description:
  * @FilePath: /my_gin/pkg/calendar/common.go
@@ -13,15 +13,15 @@ import (
 	"time"
 )
 
-type Holiday struct {
+type Date struct {
 	Name  string
 	Year  int
 	Month time.Month
 	Day   int
 }
 
-func GetGapTime(holiday Holiday) int {
-	dayStr := fmt.Sprintf("%d%02d%02d", holiday.Year, int(holiday.Month), holiday.Day)
+func GetGapTime(date Date) int {
+	dayStr := fmt.Sprintf("%d%02d%02d", date.Year, int(date.Month), date.Day)
 	fmt.Println(dayStr)
 	h, err := time.ParseInLocation("20060102", dayStr, time.Local)
 	if err != nil {
