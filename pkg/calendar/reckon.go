@@ -21,7 +21,7 @@ type Holiday struct {
 }
 
 var (
-	HolidayList = []Holiday{
+	holidayList = []Holiday{
 		{Name: "元旦", Year: 2023, Month: time.January, Day: 1},
 		{Name: "春节", Year: 2023, Month: time.January, Day: 22},
 		{Name: "清明节", Year: 2023, Month: time.April, Day: 5},
@@ -33,14 +33,14 @@ var (
 )
 
 func sortHoliday() {
-	sort.SliceStable(HolidayList, func(i, j int) bool {
-		return HolidayList[i].Day < HolidayList[j].Day
+	sort.SliceStable(holidayList, func(i, j int) bool {
+		return holidayList[i].Day < holidayList[j].Day
 	})
-	sort.SliceStable(HolidayList, func(i, j int) bool {
-		return int(HolidayList[i].Month) < int(HolidayList[j].Month)
+	sort.SliceStable(holidayList, func(i, j int) bool {
+		return int(holidayList[i].Month) < int(holidayList[j].Month)
 	})
-	sort.SliceStable(HolidayList, func(i, j int) bool {
-		return HolidayList[i].Year < HolidayList[j].Year
+	sort.SliceStable(holidayList, func(i, j int) bool {
+		return holidayList[i].Year < holidayList[j].Year
 	})
 }
 
@@ -51,20 +51,20 @@ func GetNextHoliday() Holiday {
 	month := now.Month()
 	day := now.Day()
 	i := 0
-	for ; i < len(HolidayList); i++ {
-		if HolidayList[i].Year < year {
+	for ; i < len(holidayList); i++ {
+		if holidayList[i].Year < year {
 			continue
 		}
-		if HolidayList[i].Year == year &&
-			HolidayList[i].Month < month {
+		if holidayList[i].Year == year &&
+			holidayList[i].Month < month {
 			continue
 		}
-		if HolidayList[i].Year == year &&
-			HolidayList[i].Month == month &&
-			HolidayList[i].Day < day {
+		if holidayList[i].Year == year &&
+			holidayList[i].Month == month &&
+			holidayList[i].Day < day {
 			continue
 		}
 		break
 	}
-	return HolidayList[i]
+	return holidayList[i]
 }
