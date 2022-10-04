@@ -1,7 +1,7 @@
 /*
  * @Author: liangdong09
  * @Date: 2022-10-04 13:31:35
- * @LastEditTime: 2022-10-04 16:15:50
+ * @LastEditTime: 2022-10-04 16:21:01
  * @LastEditors: liangdong09
  * @Description:
  * @FilePath: /my_gin/pkg/calendar/reckon.go
@@ -55,12 +55,12 @@ func GetNextHoliday() Holiday {
 		if HolidayList[i].Year < year {
 			continue
 		}
-		if HolidayList[i].Year >= year &&
+		if HolidayList[i].Year == year &&
 			HolidayList[i].Month < month {
 			continue
 		}
-		if HolidayList[i].Year >= year &&
-			HolidayList[i].Month >= month &&
+		if HolidayList[i].Year == year &&
+			HolidayList[i].Month == month &&
 			HolidayList[i].Day < day {
 			continue
 		}
