@@ -1,7 +1,7 @@
 /*
  * @Author: liangdong09
  * @Date: 2022-10-04 13:31:35
- * @LastEditTime: 2022-10-04 16:24:29
+ * @LastEditTime: 2022-10-04 16:45:11
  * @LastEditors: liangdong09
  * @Description:
  * @FilePath: /my_gin/pkg/calendar/reckon.go
@@ -12,13 +12,6 @@ import (
 	"sort"
 	"time"
 )
-
-type Holiday struct {
-	Name  string
-	Year  int
-	Month time.Month
-	Day   int
-}
 
 var (
 	holidayList = []Holiday{
