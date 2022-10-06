@@ -1,7 +1,7 @@
 /*
  * @Author: liangdong09
  * @Date: 2022-08-05 19:41:59
- * @LastEditTime: 2022-10-06 14:41:05
+ * @LastEditTime: 2022-10-06 14:53:04
  * @LastEditors: liangdong09
  * @Description:
  * @FilePath: /my_gin/internal/service/receive/receive_txt.go
@@ -12,6 +12,7 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/liangdong/my-gin/data"
 	"github.com/liangdong/my-gin/internal/model"
 	"github.com/liangdong/my-gin/pkg/calendar"
 )
@@ -28,8 +29,17 @@ func (r *ReceiveTxt) ReplyMsg() (model.MsgContent, error) {
 		r.Msg.Content = GenNextHolidayMsg()
 	} else if strings.HasPrefix(r.Msg.Content, "姨妈") {
 		r.Msg.Content = GenNextPeriodMsg()
+	} else if strings.HasPrefix(r.Msg.Content, "位置") {
+		DelLocationKey(r.Msg)
+		r.Msg.Content = ""
 	}
 	return r.Msg, nil
+}
+
+func DelLocationKey(msg model.MsgContent) string {
+	key := "location_" + msg.FromUsername
+	data.DelRedis(key)
+	return ""
 }
 
 // GenNextHolidayMsg, 获取下一个日期的消息

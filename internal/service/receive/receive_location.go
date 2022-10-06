@@ -1,7 +1,7 @@
 /*
  * @Author: liangdong09
  * @Date: 2022-08-05 19:44:40
- * @LastEditTime: 2022-09-30 23:55:07
+ * @LastEditTime: 2022-10-06 14:50:58
  * @LastEditors: liangdong09
  * @Description:
  * @FilePath: /my_gin/internal/service/receive/receive_location.go
@@ -85,7 +85,7 @@ func (r *ReceiveLocation) ReplyMsg() (model.MsgContent, error) {
 	if err != nil {
 		return r.Msg, err
 	}
-	data.SetRedis(key, utils.ByteSliceToString(addr_byte), 600)
+	data.SetRedis(key, utils.ByteSliceToString(addr_byte), 86400)
 	return r.Msg, nil
 }
 
