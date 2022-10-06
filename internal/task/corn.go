@@ -1,7 +1,7 @@
 /*
  * @Author: liangdong09
  * @Date: 2022-10-04 21:38:55
- * @LastEditTime: 2022-10-06 14:38:32
+ * @LastEditTime: 2022-10-06 14:55:28
  * @LastEditors: liangdong09
  * @Description:
  * @FilePath: /my_gin/internal/task/corn.go
@@ -30,7 +30,10 @@ func SendDayilyHolidayMsg() {
 }
 
 func SendDayilyPeriodMsg() {
-	period := receive.GenNextPeriodMsg()
+	period, gapDay := receive.GenNextPeriodMsg()
+	if gapDay > 7 {
+		return
+	}
 	period = addAutoSendFlag(period)
 	service.SendWeChat(period, "text", "panghu")
 }

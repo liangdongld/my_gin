@@ -28,7 +28,7 @@ func (r *ReceiveTxt) ReplyMsg() (model.MsgContent, error) {
 	} else if strings.HasPrefix(r.Msg.Content, "假期") {
 		r.Msg.Content = GenNextHolidayMsg()
 	} else if strings.HasPrefix(r.Msg.Content, "姨妈") {
-		r.Msg.Content = GenNextPeriodMsg()
+		r.Msg.Content, _ = GenNextPeriodMsg()
 	} else if strings.HasPrefix(r.Msg.Content, "位置") {
 		DelLocationKey(r.Msg)
 		r.Msg.Content = ""
@@ -52,10 +52,10 @@ func GenNextHolidayMsg() string {
 	return retStr
 }
 
-func GenNextPeriodMsg() string {
+func GenNextPeriodMsg() (string, int) {
 	nextPeriod := calendar.PredictNextPeriod()
 	gapDays := calendar.GetUntilTime(nextPeriod)
 	retStr := fmt.Sprintf("下一次姨妈预计: %d-%02d-%02d\n", nextPeriod.Year, nextPeriod.Month, nextPeriod.Day)
 	retStr = fmt.Sprintf("%s距今: %d 天", retStr, gapDays)
-	return retStr
+	return retStr, gapDays
 }
