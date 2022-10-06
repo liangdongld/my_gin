@@ -1,7 +1,7 @@
 /*
  * @Author: liangdong09
  * @Date: 2022-08-05 19:41:59
- * @LastEditTime: 2022-10-06 14:37:03
+ * @LastEditTime: 2022-10-06 14:41:05
  * @LastEditors: liangdong09
  * @Description:
  * @FilePath: /my_gin/internal/service/receive/receive_txt.go
@@ -26,6 +26,8 @@ func (r *ReceiveTxt) ReplyMsg() (model.MsgContent, error) {
 		r.Msg.Content = "罗圣鹏是你儿子"
 	} else if strings.HasPrefix(r.Msg.Content, "假期") {
 		r.Msg.Content = GenNextHolidayMsg()
+	} else if strings.HasPrefix(r.Msg.Content, "姨妈") {
+		r.Msg.Content = GenNextPeriodMsg()
 	}
 	return r.Msg, nil
 }
@@ -43,9 +45,6 @@ func GenNextHolidayMsg() string {
 func GenNextPeriodMsg() string {
 	nextPeriod := calendar.PredictNextPeriod()
 	gapDays := calendar.GetUntilTime(nextPeriod)
-	if gapDays > 7 {
-		return ""
-	}
 	retStr := fmt.Sprintf("下一次姨妈预计: %d-%02d-%02d\n", nextPeriod.Year, nextPeriod.Month, nextPeriod.Day)
 	retStr = fmt.Sprintf("%s距今: %d 天", retStr, gapDays)
 	return retStr
