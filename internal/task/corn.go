@@ -1,7 +1,7 @@
 /*
  * @Author: liangdong09
  * @Date: 2022-10-04 21:38:55
- * @LastEditTime: 2022-10-06 14:27:45
+ * @LastEditTime: 2022-10-06 14:29:43
  * @LastEditors: liangdong09
  * @Description:
  * @FilePath: /my_gin/internal/task/corn.go
@@ -19,6 +19,7 @@ import (
 func InitTask() {
 	c := cron.New()
 	c.AddFunc("0 0 12 * * *", SendDayilyHolidayMsg)
+	c.AddFunc("0 0 8 * * *", SendDayilyPeriodMsg)
 	c.Start()
 	// select {}
 }
@@ -26,9 +27,13 @@ func InitTask() {
 func SendDayilyHolidayMsg() {
 	str := GenNextHolidayMsg()
 	str = addAutoSendFlag(str)
-	period := GenNextPeriodMsg()
-	str = str + period
 	service.SendWeChat(str, "text", "panghu")
+}
+
+func SendDayilyPeriodMsg() {
+	period := GenNextPeriodMsg()
+	period = addAutoSendFlag(period)
+	service.SendWeChat(period, "text", "panghu")
 }
 
 func addAutoSendFlag(str string) string {
