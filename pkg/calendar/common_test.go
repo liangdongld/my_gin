@@ -12,6 +12,6 @@ import "testing"
 
 func TestGetGapDay(t *testing.T) {
 	H := GetNextHoliday()
-	i := GetGapTime(H)
+	i := GetUntilTime(H)
 	t.Log(i)
 }

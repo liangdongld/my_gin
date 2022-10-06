@@ -1,7 +1,7 @@
 /*
  * @Author: liangdong09
  * @Date: 2022-10-04 21:38:55
- * @LastEditTime: 2022-10-04 22:03:40
+ * @LastEditTime: 2022-10-06 14:27:45
  * @LastEditors: liangdong09
  * @Description:
  * @FilePath: /my_gin/internal/task/corn.go
@@ -26,6 +26,8 @@ func InitTask() {
 func SendDayilyHolidayMsg() {
 	str := GenNextHolidayMsg()
 	str = addAutoSendFlag(str)
+	period := GenNextPeriodMsg()
+	str = str + period
 	service.SendWeChat(str, "text", "panghu")
 }
 
@@ -37,9 +39,20 @@ func addAutoSendFlag(str string) string {
 // GenNextHolidayMsg, 获取下一个日期的消息
 func GenNextHolidayMsg() string {
 	nextHoliday := calendar.GetNextHoliday()
-	gapDays := calendar.GetGapTime(nextHoliday)
+	gapDays := calendar.GetUntilTime(nextHoliday)
 	retStr := fmt.Sprintf("下一个节假日: %s\n", nextHoliday.Name)
 	retStr = fmt.Sprintf("%s日期: %d-%02d-%02d\n", retStr, nextHoliday.Year, nextHoliday.Month, nextHoliday.Day)
+	retStr = fmt.Sprintf("%s距今: %d 天", retStr, gapDays)
+	return retStr
+}
+
+func GenNextPeriodMsg() string {
+	nextPeriod := calendar.PredictNextPeriod()
+	gapDays := calendar.GetUntilTime(nextPeriod)
+	if gapDays > 7 {
+		return ""
+	}
+	retStr := fmt.Sprintf("下一次姨妈预计: %d-%02d-%02d\n", nextPeriod.Year, nextPeriod.Month, nextPeriod.Day)
 	retStr = fmt.Sprintf("%s距今: %d 天", retStr, gapDays)
 	return retStr
 }
