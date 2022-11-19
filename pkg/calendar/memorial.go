@@ -17,8 +17,6 @@ var (
 		{Name: "第一次见面", Year: 2022, Month: time.August, Day: 7},
 		{Name: "在一起", Year: 2022, Month: time.September, Day: 10},
 		{Name: "第一次牵手", Year: 2022, Month: time.September, Day: 10},
-		// {Name: "第一次接吻", Year: 2022, Month: time.October, Day: 5},
-		// {Name: "在一起", Year: 2022, Month: time.October, Day: 7},
 	}
 )
 

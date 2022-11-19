@@ -4,7 +4,7 @@
  * @LastEditTime: 2022-10-04 13:13:40
  * @LastEditors: liangdong09
  * @Description:
- * @FilePath: /my_gin/internal/routers/weChatRouter.go
+ * @FilePath: /my_gin/internal/routers/wechatrouter.go
  */
 package routers
 
