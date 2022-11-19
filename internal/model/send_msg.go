@@ -1,7 +1,7 @@
 /*
  * @Author: liangdong09
  * @Date: 2022-07-23 20:36:14
- * @LastEditTime: 2022-09-14 15:29:51
+ * @LastEditTime: 2022-11-06 22:13:20
  * @LastEditors: liangdong09
  * @Description:
  * @FilePath: /my_gin/internal/model/send_msg.go
@@ -39,6 +39,9 @@ type MsgContent struct {
 	Latitude     float64 `xml:"Latitude" json:"Latitude"`
 	Longitude    float64 `xml:"Longitude" json:"Longitude"`
 	Precision    int     `xml:"Precision" json:"Precision"`
+	MarkDown     struct {
+		Content string `xml:"Content" json:"Content"`
+	} `xml:"MarkDown" json:"MarkDown"`
 }
 
 func (t *WcSendMsg) SetAgentId(agentId string) {
