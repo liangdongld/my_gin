@@ -1,8 +1,8 @@
 /*
  * @Author: liangdong09
  * @Date: 2022-10-04 13:31:35
- * @LastEditTime: 2022-11-15 17:17:38
- * @LastEditors: liangdong09
+ * @LastEditTime: 2023-10-10 16:03:10
+ * @LastEditors: LiangDong
  * @Description:
  * @FilePath: /my_gin/pkg/calendar/reckon.go
  */
@@ -23,6 +23,9 @@ var (
 		{Name: "端午节", Year: 2023, Month: time.June, Day: 22},
 		{Name: "中秋节", Year: 2023, Month: time.September, Day: 29},
 		{Name: "国庆节", Year: 2023, Month: time.October, Day: 1},
+		{Name: "元旦", Year: 2024, Month: time.January, Day: 1},
+		{Name: "除夕", Year: 2024, Month: time.February, Day: 9},
+		{Name: "清明", Year: 2024, Month: time.April, Day: 4},
 	}
 )
 

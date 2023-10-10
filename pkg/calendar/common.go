@@ -1,8 +1,8 @@
 /*
  * @Author: liangdong09
  * @Date: 2022-10-04 13:31:46
- * @LastEditTime: 2022-11-06 21:33:06
- * @LastEditors: liangdong09
+ * @LastEditTime: 2023-10-10 16:36:12
+ * @LastEditors: LiangDong
  * @Description:
  * @FilePath: /my_gin/pkg/calendar/common.go
  */
@@ -34,7 +34,7 @@ func GetSinceTime(date Date) int {
 	if err != nil {
 		return -1
 	}
-	t := time.Since(h).Hours()/24 + 1
+	t := time.Since(h).Hours() / 24
 	return int(t)
 }
 
